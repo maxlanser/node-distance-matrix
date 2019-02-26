@@ -1,0 +1,25 @@
+extends layouts/_default
+
+block content
+	
+	a(href="/")
+		span.icon
+			.fas.fa-home.is-medium
+		span Back to home
+	h2.title Error
+
+	if data.status != 'OK'
+		.notification.is-danger= data.status
+		.message.is-warning
+			.message-header Warning
+			.message-body
+				p= data.error_message
+	else
+		.notification.is-danger Where is the mistake
+		.message.is-warning
+			.message-header Warning
+			.message-body
+				if !data.origin_addresses[0]
+					p The starting point coordinates are incorrect.
+				if !data.destination_addresses[0]
+					p Endpoint coordinates are incorrect.

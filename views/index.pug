@@ -1,0 +1,47 @@
+extends layouts/_default
+
+block content
+	h2.title Google Distance Matrix
+	p Calculation of the distance between two points on the coordinates on Google maps
+
+	form(method="POST")
+		.columns
+			.column.is-two-fifths
+				p Starting point coordinates
+				.columns
+					.column
+						.field
+							label.label Latitude
+							.control
+								input.input(type="text" name="origlatitude" placeholder="enter latitude")
+					.column
+						.field
+							label.label Longitude
+							.control
+								input.input(type="text" name="origlongitude" placeholder="enter longitude")
+				p End point coordinates
+				.columns
+					.column
+						.field
+							label.label Latitude
+							.control
+								input.input(type="text" name="destlatitude" placeholder="enter latitude")
+					.column
+						.field
+							label.label Longitude
+							.control
+								input.input(type="text" name="destlongitude" placeholder="enter longitude")
+				.field
+					.control
+						button.button.is-link(type='submit') Сalculate
+
+			
+				if googleData
+					.colunms
+						.column
+							.message.is-success
+								.message-header
+									p Response
+								.message-body
+									P Time to the point: #{googleData.duration.text}
+									P Distance to the point: #{googleData.distance.text}
